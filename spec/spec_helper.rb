@@ -2,9 +2,9 @@ require 'bundler'
 Bundler.setup
 
 require 'resque-unfairly'
-require 'spec'
-require 'spec/autorun'
+require 'rspec'
+require 'rspec/autorun'
 
-Spec::Runner.configure do |config|
+RSpec.configure do |config|
 end
 

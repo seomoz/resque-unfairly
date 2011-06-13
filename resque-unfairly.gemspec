@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "resque-unfairly/version"
+require "resque/plugins/unfairly/version"
 
 Gem::Specification.new do |s|
   s.name        = "resque-unfairly"
-  s.version     = Resque::Unfairly::VERSION
+  s.version     = Resque::Plugins::Unfairly::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Evan Battaglia"]
   s.email       = ["evan@seomoz.org"]
