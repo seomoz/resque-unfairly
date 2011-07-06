@@ -44,6 +44,7 @@ module Resque::Plugins
       weights.each_with_index do |weight, index|
         return index  if (rand_val -= weight) < 0
       end
+      0
     end
 
     def weighted_order(vals, weights)

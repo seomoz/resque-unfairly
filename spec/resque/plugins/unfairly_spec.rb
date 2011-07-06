@@ -1,10 +1,6 @@
 require File.expand_path("../../spec_helper", File.dirname(__FILE__))
 
 describe Resque::Plugins::Unfairly do
-  it 'has the priorities set from Rankor::QUEUE_WEIGHTS' do
-    described_class.instance_variable_get(:@priorities).should == Rankor::QUEUE_WEIGHTS
-  end
-  
   context 'with our own priorities' do
     before do
       described_class.instance_variable_set :@priorities, nil
@@ -21,12 +17,12 @@ describe Resque::Plugins::Unfairly do
         before do
           priorities.each { |q,p| described_class.prioritize(q,p) }
 
-          N = 100000
-          N.times do
-            counts[worker.queues_randomly_ordered.first] += 1 rescue begin ebug
+          n = 100000
+          n.times do
+            counts[worker.queues_randomly_ordered.first] += 1
           end
           counts.each do |k,v| # normalize
-            counts[k] /= N.to_f
+            counts[k] /= n.to_f
           end
         end
 
@@ -41,11 +37,11 @@ describe Resque::Plugins::Unfairly do
           end
         end
         
-        context "with weights 9, 1, 2, 0" do
-          let (:priorities) { { 'a' => 9, 'b' => 1, 'c' => 2, 'd' => 0 } }
+        context "with weights 7, 1, 2, 0" do
+          let (:priorities) { { 'a' => 7, 'b' => 1, 'c' => 2, 'd' => 0 } }
 
           it 'makes the first queue returned probablistically proportional to the corresponding weights' do
-            counts['a'].should > 0.88 and counts['a'].should < 0.92
+            counts['a'].should > 0.68 and counts['a'].should < 0.72
             counts['b'].should > 0.08 and counts['b'].should < 0.12
             counts['c'].should > 0.19 and counts['c'].should < 0.22
             counts['d'].should == 0
