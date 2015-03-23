@@ -1,3 +1,7 @@
+![Status: Production](https://img.shields.io/badge/status-production-green.svg?style=flat)
+![Open Source: yes](https://img.shields.io/badge/open_source-yes-green.svg?style=flat)
+![Team: Research Tools](https://img.shields.io/badge/team-research_tools-green.svg?style=flat)
+
 resque-unfairly
 ===============
 
